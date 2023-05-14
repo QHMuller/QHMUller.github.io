@@ -70,10 +70,10 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 35
+			总文章数 36
 		</nav>
 		<nav>
-			总字数 <span class="post-count">19.3k</span>
+			总字数 <span class="post-count">18.7k</span>
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -175,6 +175,159 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-SQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		<div align="center" class="post-count">
+			字数：415字 | 预计阅读时长：1分钟
+		</div>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/13/SQL/">SQL</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/13/SQL/" class="archive-article-date">
+  	<time datetime="2023-05-13T02:11:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="sql">SQL</span></h2><h3><span id="sql优化">SQL优化</span></h3><p>这个问题先搞清楚：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53601359/article/details/115558427">什么是索引？</a></p>
+<p>B+树：层数很少，每层结点很多，目的是减少IO次数</p>
+<ol>
+<li>尽量别用SELECT *，使用具体字段名</li>
+<li>用<code>UNION ALL</code>代替<code>OR</code>，使用<code>OR</code>可能导致索引失效，造成全局扫描</li>
+<li>用varchar代替char，变长字段</li>
+<li>用数值代替字符串，性别01</li>
+<li>使用explain分析SQL执行计划</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53601359/article/details/115553449">SQL优化方法</a></p>
+<h3><span id="优化数据库的代码">优化数据库的代码</span></h3><ol>
+<li><p>对项目：</p>
+<ul>
+<li>将JDBC的参数写到配置文件中，方便重用；</li>
+<li>项目的生产和测试环境参数不同，通过输入不同的参数来读取不同的配置文件。</li>
+</ul>
+</li>
+<li><p>PreparedStatement</p>
+<ul>
+<li><p>以批处理方式执行SQL语句，提升性能；</p>
+</li>
+<li><p>占位符编号从1开始；</p>
+</li>
+<li><p>不要一次性执行太多，不然会“撑爆”缓冲区导致出错；</p>
+</li>
+<li><p>通过调用setString方法避免SQL注入，防止非法用户绕过授权</p>
+<p>思考：能否用避免SQL注入，优化我的项目？</p>
+</li>
+</ul>
+</li>
+<li><p>C3P0连接池</p>
+<ul>
+<li>连接对象使用完毕后，连接池会继续保持它们处于“可用”状态，避免频繁连接和释放导致性能损耗；</li>
+<li>关闭连接后，物理上不会释放连接对象</li>
+</ul>
+</li>
+</ol>
+<h3><span id="数据库优化的技能点">数据库优化的技能点</span></h3><ol>
+<li><p>索引</p>
+<ul>
+<li>适合建索引<ul>
+<li>主键自动建立唯一索引</li>
+<li>与其他表关联的外键</li>
+<li>频繁作为查询条件的字段</li>
+<li>排序、统计、分组字段</li>
+</ul>
+</li>
+<li>不适合建索引<ul>
+<li>表记录太少</li>
+<li>频繁增删改</li>
+<li>数据重复且分布平均</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>批处理</p>
+</li>
+<li><p>连接池</p>
+</li>
+<li><p>使用数据表的监控工具：SQL语句执行时间过长，连接数过多</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/基础知识//" class="article-tag-list-link color5">基础知识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/基础知识/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/13/SQL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-异常处理与IO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1478,119 +1631,6 @@
 
 
   
-    <article id="post-ElasticSearch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		<div align="center" class="post-count">
-			字数：429字 | 预计阅读时长：1分钟
-		</div>
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/13/ElasticSearch/">ElasticSearch</a>
-    </h1>
-  
-
-        
-        <a href="/2023/05/13/ElasticSearch/" class="archive-article-date">
-  	<time datetime="2023-05-13T01:49:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="elasticsearch">Elasticsearch</span></h2><h3><span id="搜索引擎的原理是什么">搜索引擎的原理是什么？</span></h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62892586">终于有人把Elasticsearch原理讲透了！</a></p>
-<p>建立倒排索引（反向索引）：</p>
-<p>将通过诗名找诗句，转化为 -&gt; 先通过关键词找诗名，再找出诗句</p>
-<p>这就是百度，谷歌的搜索原理，通过关键词找帖子标题，再点进去看详情。</p>
-<h3><span id="什么是elasticsearch">什么是Elasticsearch？</span></h3><ol>
-<li>一个分布式的、Restful风格的搜索引擎。</li>
-<li>支持对各种类型的数据的检索。</li>
-<li>搜索速度快，可以提供实时的搜索服务。</li>
-<li>便于水平拓展，每秒可以处理PB级海量数据。</li>
-</ol>
-<h3><span id="elasticsearch术语有哪些">Elasticsearch术语有哪些？</span></h3><blockquote>
-<p>与Mysql对应：左边是Elasticsearch术语</p>
-<p>版本6.0以前：索引 -&gt; 数据库，类型 -&gt; 表，文档 -&gt; 行，字段 -&gt; 列</p>
-<p>版本7.0以后：索引 -&gt; 表，文档 -&gt; 行，字段 -&gt; 列</p>
-<p>文档一般是JSON类型，存储一行数据</p>
-</blockquote>
-<h3><span id="如何在elasticsearch中建立索引">如何在Elasticsearch中建立索引？</span></h3><p>Elasticsearch 把操作都封装成了 HTTP 的 API，我们只需给 Elasticsearch 发送 HTTP 请求</p>
-<p>所以只要学习Elasticsearch 的HTTP API就行</p>
-<h3><span id="怎样保证高可用">怎样保证高可用？</span></h3><p>Elasticsearch 是主从架构，会对数据进行切分，每一个分片保存多个副本，放在不同节点上。</p>
-<p>建立索引的请求先发给master，master建立索引后将状态同步到slave</p>
-<h3><span id="应用场景">应用场景？</span></h3><p>一个典型应用就是 ELK 日志分析系统。e用于搜索，l用于采集，k用于可视化。这个系统可以将多台服务器的日志汇总在一起，通过Elasticsearch搜索，还能接入实时计算和实时报警功能。</p>
-<h3><span id="项目中的作用">项目中的作用？</span></h3><p>将帖子保存至Elasticsearch服务器<br>从Elasticsearch服务器搜索帖子</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/基础知识//" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/基础知识/常用中间件//" class="article-tag-list-link color1">常用中间件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/13/ElasticSearch/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1696,47 +1736,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Session</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">内容分发网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AOP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">捕获异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">基本语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1748,27 +1752,47 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">内容分发网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">基本语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">持久化框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反向代理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1780,7 +1804,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">反向代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">集合类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1800,15 +1832,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">集合类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1816,15 +1844,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">持久化框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1836,15 +1868,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1853,6 +1877,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码精读</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1872,15 +1912,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">过期策略</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">淘汰策略</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存穿透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存击穿</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存雪崩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">调试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
             
             <div class="clearfix"></div>

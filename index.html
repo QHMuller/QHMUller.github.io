@@ -70,10 +70,10 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 35
+			总文章数 36
 		</nav>
 		<nav>
-			总字数 <span class="post-count">19.3k</span>
+			总字数 <span class="post-count">18.7k</span>
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -179,11 +179,29 @@
     <article id="post-数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+		<div align="center" class="post-count">
+			字数：993字 | 预计阅读时长：4分钟
+		</div>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/14/%E6%95%B0%E7%BB%84/">数组</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/14/%E6%95%B0%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2023-05-14T01:49:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-14</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p>@<a href="%E5%AD%A6%E4%B9%A0%E3%80%8A%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E3%80%8B">toc</a></p>
 <h1><span id="理论基础">理论基础</span></h1><h2><span id="什么是数组">什么是数组？</span></h2><p>数组是存储在连续内存空间上的相同类型数据的集合。</p>
-<h1><span id="二分查找">二分查找</span></h1><p><img src="/../img/3991c28facfd4979a10fdc3e9a09a3b1.png" alt="在这里插入图片描述"></p>
+<h1><span id="二分查找">二分查找</span></h1><p><img src="/../img/3991c28facfd4979a10fdc3e9a09a3b1-168402899419710.png" alt="在这里插入图片描述"></p>
 <p>有两种解法：左闭右闭、左闭右开</p>
 <h2><span id="左闭右闭">左闭右闭</span></h2><p>即 [ left , right ] </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>; <span class="comment">//定义为左闭右闭</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123; <span class="comment">//见注1</span></span><br><span class="line">            <span class="comment">//这一步等同于(left + right) / 2，如下处理为了防止内存溢出</span></span><br><span class="line">            <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (nums[middle] &gt; target) &#123; <span class="comment">//说明target在左区间</span></span><br><span class="line">                right = middle - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (nums[middle] &lt; target) &#123;</span><br><span class="line">                left = middle + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> middle;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -195,7 +213,7 @@
 <h2><span id="左闭右开">左闭右开</span></h2><p>即 [ left , right )</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>(); <span class="comment">//定义为左闭右开</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123; <span class="comment">//left取不到right</span></span><br><span class="line">            <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (nums[middle] &gt; target) &#123;</span><br><span class="line">                right = middle; <span class="comment">//左区间是[left,middle)</span></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (nums[middle] &lt; target) &#123;</span><br><span class="line">                left = middle + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> middle;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1><span id="移除元素">移除元素</span></h1><p><img src="/../img/8981aac466a742a8b600ae33156e0e16.png" alt="在这里插入图片描述"></p>
+<h1><span id="移除元素">移除元素</span></h1><p><img src="/../img/8981aac466a742a8b600ae33156e0e16-16840289907627.png" alt="在这里插入图片描述"></p>
 <p>两种解法：暴力法、双指针法</p>
 <h2><span id="暴力法">暴力法</span></h2><p>用两层for循环向前覆盖元素</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> size = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++)  &#123; <span class="comment">//第一个for循环遍历数组元素</span></span><br><span class="line">            <span class="keyword">if</span> (nums[i] == val) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; size; j++) &#123; <span class="comment">//第二个for循环更新数组</span></span><br><span class="line">                    nums[j - <span class="number">1</span>] = nums[j];</span><br><span class="line">                &#125;</span><br><span class="line">                i--; <span class="comment">//i后的元素都向前移了一位，所以i--</span></span><br><span class="line">                size--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -207,7 +225,7 @@
 
 <p>时间复杂度：O(n)</p>
 <p>空间复杂度：O(1)</p>
-<h1><span id="长度最小的子数组">长度最小的子数组</span></h1><p><img src="/../img/741bb5365a5144d7a1df05f597dda411.png" alt="在这里插入图片描述"></p>
+<h1><span id="长度最小的子数组">长度最小的子数组</span></h1><p><img src="/../img/741bb5365a5144d7a1df05f597dda411-16840289873624.png" alt="在这里插入图片描述"></p>
 <p>两种解法：暴力法、滑动窗口</p>
 <h2><span id="暴力法">暴力法</span></h2><p>第一个for循环遍历所有元素，第二个for循环查找从该元素到数组末尾</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">		<span class="type">int</span> result = INT32_MAX; <span class="comment">//结果</span></span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> subLength = <span class="number">0</span>; <span class="comment">//记录最小长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; nums.<span class="built_in">size</span>(); j++) &#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                <span class="keyword">if</span> (sum &gt;= target) &#123; <span class="comment">//一旦和大于target，记录最小长度</span></span><br><span class="line">                    subLength = j - i + <span class="number">1</span>;</span><br><span class="line">                    result = result &lt; subLength ? result : subLength;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result == INT32_MAX ? <span class="number">0</span> : result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -218,7 +236,7 @@
 
 <p>时间复杂度：O(n)</p>
 <p>空间复杂度：O(1)</p>
-<h1><span id="螺旋矩阵">螺旋矩阵</span></h1><p><img src="/../img/33450d8a0acd4fd1a40f526aff01d795.png" alt="在这里插入图片描述"></p>
+<h1><span id="螺旋矩阵">螺旋矩阵</span></h1><p><img src="/../img/33450d8a0acd4fd1a40f526aff01d795-16840289833321.png" alt="在这里插入图片描述"></p>
 <p>坚持循环不变量：左闭右开</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">		vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">res</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="type">int</span> startx = <span class="number">0</span>, starty = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> loop = n / <span class="number">2</span>; <span class="comment">//圈数，n=3时就一圈</span></span><br><span class="line">        <span class="type">int</span> mid = n / <span class="number">2</span>; <span class="comment">//如果n为奇数，最后要给中间位置赋值</span></span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>; <span class="comment">//记录赋的值</span></span><br><span class="line">        <span class="type">int</span> offset = <span class="number">1</span>; <span class="comment">//控制每圈的长度，但不是长度</span></span><br><span class="line">        <span class="type">int</span> i, j;</span><br><span class="line">        <span class="keyword">while</span> (loop--) &#123;</span><br><span class="line">            i = startx;</span><br><span class="line">            j = starty;</span><br><span class="line">            <span class="comment">//四次循环就是一圈</span></span><br><span class="line">            <span class="keyword">for</span> (j = starty; j &lt; starty + n - offset; j++) &#123;</span><br><span class="line">                res[startx][j] = count++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (i = startx; i &lt; startx + n - offset; i++) &#123;</span><br><span class="line">                res[i][j] = count++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (; j &gt; starty; j--) &#123;</span><br><span class="line">                res[i][j] = count++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (; i &gt; startx; i--) &#123;</span><br><span class="line">                res[i][j] = count++;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//每次循环后的处理</span></span><br><span class="line">            startx++;</span><br><span class="line">            starty++;</span><br><span class="line">            offset += <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果是奇数</span></span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span>) &#123;</span><br><span class="line">            res[mid][mid] = count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -229,11 +247,208 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/四大件//" class="article-tag-list-link color4">四大件</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/四大件/数据结构与算法//" class="article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/13/%E6%95%B0%E7%BB%84/">展开全文 >></a>
+          <a class="article-more-a" href="/2023/05/14/%E6%95%B0%E7%BB%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-缓存" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		<div align="center" class="post-count">
+			字数：770字 | 预计阅读时长：2分钟
+		</div>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/14/%E7%BC%93%E5%AD%98/">缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/14/%E7%BC%93%E5%AD%98/" class="archive-article-date">
+  	<time datetime="2023-05-14T01:42:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="redis数据类型">Redis数据类型</span></h1><p><img src="/../img/9f6101392f054dc880c7eba4d9861265.png" alt="在这里插入图片描述"></p>
+<p>   值有七种数据类型</p>
+<h1><span id="过期策略">过期策略</span></h1><ul>
+<li>将过期的key放在一个独立的字典里，不会立刻删除。因为每一个key都删除效率太低。</li>
+<li>惰性删除：当客户端访问key时，检查是否过期，过期则删除；</li>
+<li>定期扫描：默认每秒扫描10次。<ul>
+<li>先从字典中随机选择20个key；</li>
+<li>删除其中过期的key；</li>
+<li>若删除的比例超过25%，则重新执行一轮</li>
+</ul>
+</li>
+</ul>
+<h1><span id="淘汰策略">淘汰策略</span></h1><ul>
+<li>当内存超出最大限制时，需要淘汰一些数据腾出空间</li>
+<li>两种主流策略：淘汰剩余寿命（TTL）最短的；淘汰访问次数最少的（近似LRU算法）</li>
+<li>近似LRU算法：每个key维护一个时间戳，淘汰时随机选择5个key，淘汰最旧的key。如果还超，就继续淘汰。</li>
+</ul>
+<h1><span id="缓存问题">缓存问题</span></h1><h2><span id="缓存穿透">缓存穿透</span></h2><ul>
+<li>查询根本不存在的数据，缓存里肯定没有，只能提交给数据库查询。这种请求一多，数据库负载过大就崩了。</li>
+<li>解决方案：<ul>
+<li>在数据库未查询到，给客户端返回空值的同时，将空值存入缓存。下次访问直接返回空。</li>
+<li>在缓存层之前设置布隆过滤器，将所有key存入，若请求无效的key，直接过滤。</li>
+</ul>
+</li>
+</ul>
+<h2><span id="缓存击穿">缓存击穿</span></h2><ul>
+<li>访问量很大的数据，在缓存失效瞬间，大量请求涌入存储层。</li>
+<li>解决方案：<ul>
+<li>在一个线程访问时加互斥锁，其他线程等待。访问结束，缓存中已有数据，其他线程访问缓存即可。</li>
+<li>设置永不过期，物理上</li>
+<li>设置逻辑过期时间，当发现一个value逻辑过期，使用一个单独的线程重建缓存，逻辑上</li>
+</ul>
+</li>
+</ul>
+<h2><span id="缓存雪崩">缓存雪崩</span></h2><ul>
+<li>缓存击穿的升级版。有大量的热门缓存，同时失效。或缓存服务器宕机。</li>
+<li>解决方案：<ul>
+<li>避免同时过期，附加一个随机数</li>
+<li>构建高可用的Redis缓存</li>
+<li>构建多级缓存，本地缓存</li>
+<li>启用限流和降级措施，对数据库限流，服务降级</li>
+</ul>
+</li>
+</ul>
+<h1><span id="分布式锁">分布式锁</span></h1><ul>
+<li>分布式部署中，经常将数据读到内存，修改后返回给数据库。但这一操作可能被多个进程同时进行，读和写不是原子操作，需要加锁</li>
+<li>基本原理：<ul>
+<li>同步锁：在多个线程都能访问到的地方，做一个标记，标记该数据的访问权限</li>
+<li>分布式锁：在多个进程都能访问到的地方，做一个标记，标记该数据的访问权限</li>
+</ul>
+</li>
+<li>实现方式：<ul>
+<li>基于数据库实现分布式锁</li>
+<li>基于Redis实现分布式锁</li>
+<li>基于Zookeeper实现分布式锁</li>
+</ul>
+</li>
+<li>Redis实现锁的原则<ul>
+<li>独享。在任一时刻，只有一个客户端持有锁</li>
+<li>无死锁。即使持有锁的客户端崩溃或网络被分裂，锁依然可以被获取</li>
+<li>容错。只要Redis大部分节点活着，客户端就可以获取和释放锁</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">过期策略</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">淘汰策略</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">缓存穿透</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">缓存击穿</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">缓存雪崩</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/基础知识//" class="article-tag-list-link color5">基础知识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/基础知识/Java-Web//" class="article-tag-list-link color4">Java Web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/14/%E7%BC%93%E5%AD%98/">展开全文 >></a>
         </p>
       
 
@@ -606,7 +821,7 @@
     
       <header class="article-header">
 		<div align="center" class="post-count">
-			字数：376字 | 预计阅读时长：1分钟
+			字数：467字 | 预计阅读时长：1分钟
 		</div>
         
   
@@ -629,6 +844,12 @@
 <h2><span id="什么是联合索引">什么是联合索引？</span></h2><p>我们再来回忆一下，怎么通过偏旁部首找到“薰”。<br>先在偏旁表找到三画的草字头，范围是2~5，这可不是汉字的页码，而是部首表的页码。<br>然后，我们去部首表，找到14画的“熏”，这里对应的页码，就是汉字“薰”了。<br>这里的偏旁部首表就是联合索引，通过两个索引，更快的找到它！</p>
 <h2><span id="什么是最左前缀匹配">什么是最左前缀匹配？</span></h2><p>通过联合索引，我们会想到：<br>必须先知道偏旁表的草字头，才能有后面14画的“薰”，这很容易理解，只有匹配了左边的，才能继续匹配右边。</p>
 <h2><span id="什么是聚集索引">什么是聚集索引？</span></h2><p>字典是按什么顺序进行编排的呢，拼音还是部首？<br>是拼音。这个拼音就是聚集索引。<br>而对于我们的数据表，一般都是按照主键进行排列，它就是聚集索引了。</p>
+<h2><span id="b-tree">B+ Tree？</span></h2><ul>
+<li>数据分块存储，每一块称为一页；</li>
+<li>所有的值都是按顺序存储的，并且每一个叶子到根的距离相同；</li>
+<li>非叶节点存储数据的边界，叶子节点存储指向数据行的指针；</li>
+<li>通过边界缩小查找的范围，从而避免全局扫描，加快查找速度。</li>
+</ul>
 <h2><span id="恍然大悟我竟然连怎么查字典都忘了">恍然大悟，我竟然连怎么查字典都忘了</span></h2>
       
 
@@ -1547,159 +1768,6 @@ A a = new A();B a = (B)a; //a是A的对象，向下需要强制转换
 
 
   
-    <article id="post-SQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		<div align="center" class="post-count">
-			字数：415字 | 预计阅读时长：1分钟
-		</div>
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/13/SQL/">SQL</a>
-    </h1>
-  
-
-        
-        <a href="/2023/05/13/SQL/" class="archive-article-date">
-  	<time datetime="2023-05-13T02:11:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="sql">SQL</span></h2><h3><span id="sql优化">SQL优化</span></h3><p>这个问题先搞清楚：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53601359/article/details/115558427">什么是索引？</a></p>
-<p>B+树：层数很少，每层结点很多，目的是减少IO次数</p>
-<ol>
-<li>尽量别用SELECT *，使用具体字段名</li>
-<li>用<code>UNION ALL</code>代替<code>OR</code>，使用<code>OR</code>可能导致索引失效，造成全局扫描</li>
-<li>用varchar代替char，变长字段</li>
-<li>用数值代替字符串，性别01</li>
-<li>使用explain分析SQL执行计划</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53601359/article/details/115553449">SQL优化方法</a></p>
-<h3><span id="优化数据库的代码">优化数据库的代码</span></h3><ol>
-<li><p>对项目：</p>
-<ul>
-<li>将JDBC的参数写到配置文件中，方便重用；</li>
-<li>项目的生产和测试环境参数不同，通过输入不同的参数来读取不同的配置文件。</li>
-</ul>
-</li>
-<li><p>PreparedStatement</p>
-<ul>
-<li><p>以批处理方式执行SQL语句，提升性能；</p>
-</li>
-<li><p>占位符编号从1开始；</p>
-</li>
-<li><p>不要一次性执行太多，不然会“撑爆”缓冲区导致出错；</p>
-</li>
-<li><p>通过调用setString方法避免SQL注入，防止非法用户绕过授权</p>
-<p>思考：能否用避免SQL注入，优化我的项目？</p>
-</li>
-</ul>
-</li>
-<li><p>C3P0连接池</p>
-<ul>
-<li>连接对象使用完毕后，连接池会继续保持它们处于“可用”状态，避免频繁连接和释放导致性能损耗；</li>
-<li>关闭连接后，物理上不会释放连接对象</li>
-</ul>
-</li>
-</ol>
-<h3><span id="数据库优化的技能点">数据库优化的技能点</span></h3><ol>
-<li><p>索引</p>
-<ul>
-<li>适合建索引<ul>
-<li>主键自动建立唯一索引</li>
-<li>与其他表关联的外键</li>
-<li>频繁作为查询条件的字段</li>
-<li>排序、统计、分组字段</li>
-</ul>
-</li>
-<li>不适合建索引<ul>
-<li>表记录太少</li>
-<li>频繁增删改</li>
-<li>数据重复且分布平均</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>批处理</p>
-</li>
-<li><p>连接池</p>
-</li>
-<li><p>使用数据表的监控工具：SQL语句执行时间过长，连接数过多</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/基础知识//" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/基础知识/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/13/SQL/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1805,47 +1873,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Session</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">内容分发网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AOP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">捕获异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">基本语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1857,27 +1889,47 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">内容分发网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">基本语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">持久化框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反向代理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1889,7 +1941,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">反向代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">集合类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1909,15 +1969,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">集合类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1925,15 +1981,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">持久化框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1945,15 +2005,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1962,6 +2014,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码精读</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1981,15 +2049,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">过期策略</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">淘汰策略</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存穿透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存击穿</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存雪崩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">调试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
             
             <div class="clearfix"></div>

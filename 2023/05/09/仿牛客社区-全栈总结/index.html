@@ -15,14 +15,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/4e0a0d2049f8479e9ed37933281dd0d3.png">
 <meta property="og:image" content="http://example.com/img/25af5c550f174aaf971d0bcd77fad85c.png">
-<meta property="og:image" content="http://example.com/img/5db7bb1d2fa7442e83d9df6400d36d93.png">
-<meta property="og:image" content="http://example.com/img/97c3112c055c4b95b736ea8a533028af.png">
-<meta property="og:image" content="http://example.com/img/9f6101392f054dc880c7eba4d9861265.png">
-<meta property="og:image" content="http://example.com/img/eff64dc9b0ef4255bbce19e4ab67b68c.png">
-<meta property="og:image" content="http://example.com/img/6c9fd6110fbe4670a8389200e7ec5cab.png">
-<meta property="og:image" content="http://example.com/img/7f5c7451739a422bae7df4d41c479dc6.png">
 <meta property="article:published_time" content="2023-05-09T14:16:05.000Z">
-<meta property="article:modified_time" content="2023-05-12T08:46:21.916Z">
+<meta property="article:modified_time" content="2023-05-14T01:47:05.583Z">
 <meta property="article:author" content="QH">
 <meta property="article:tag" content="后端">
 <meta name="twitter:card" content="summary">
@@ -80,10 +74,10 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 35
+			总文章数 36
 		</nav>
 		<nav>
-			总字数 <span class="post-count">19.3k</span>
+			总字数 <span class="post-count">18.7k</span>
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -189,7 +183,7 @@
     
       <header class="article-header">
 		<div align="center" class="post-count">
-			字数：1.8k字 | 预计阅读时长：6分钟
+			字数：376字 | 预计阅读时长：1分钟
 		</div>
         
   
@@ -288,193 +282,6 @@
 </ul>
 <p>HR关注的问题：性能、可靠性、安全性</p>
 <p>研究透一个 比 明白两个 更好</p>
-<h2><span id="常见面试题">常见面试题</span></h2><h3><span id="mysql">MySQL</span></h3><ol>
-<li><p>存储引擎</p>
-<ul>
-<li>InnoDB：支持事务</li>
-</ul>
-</li>
-<li><p>事务</p>
-<ul>
-<li>事务的特性：原子性、一致性、隔离性、持久性</li>
-<li>事务的隔离性<ul>
-<li>并发异常：第一类丢失更新、第二类丢失更新、脏读、不可重复读、幻读</li>
-<li>隔离级别：Read Uncommitted、 Read Committed、 Repeatable Read、 Serializable</li>
-</ul>
-</li>
-<li>Spring事务管理<ul>
-<li>声明式事务</li>
-<li>编程式事务</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>锁</p>
-<ul>
-<li><p>范围</p>
-<ul>
-<li>表级锁：开销小、加锁快，发生锁冲突的概率高、并发度低，不会出现死锁。</li>
-<li>行级锁（InnoDB）：开销大、加锁慢，发生锁冲突的概率低、并发度高，会出现死锁。</li>
-</ul>
-</li>
-<li><p>类型</p>
-<ul>
-<li><p>共享锁（S）：行级，读取一行</p>
-</li>
-<li><p>排他锁（X）：行级，更新一行</p>
-</li>
-<li><p>意向共享锁（IS）：表级，准备加共享锁</p>
-</li>
-<li><p>意向排他锁（IX）：表级，准备加排他锁</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="/../img/5db7bb1d2fa7442e83d9df6400d36d93.png" alt="在这里插入图片描述"></p>
-<pre><code> - 间隙锁（NK）：行级，使用范围条件时，对此时范围内不存在的记录加锁。一是为了防止幻读，二是为了满足恢复和复制的需要。
-</code></pre>
-<ul>
-<li><p>加锁</p>
-<ul>
-<li>数据查询语句DQL（<code>SELECT</code>），操纵DML（<code>INSECT</code>,<code>DELECT</code>,<code>UPDATE</code>），定义DDL（<code>CREATE</code>），控制DCL（<code>GRANT</code>）</li>
-<li>增加行级锁之前，自动加意向锁</li>
-<li>在执行DML之前，InnoDB自动加排他锁</li>
-<li>执行DQL，默认不加锁</li>
-</ul>
-</li>
-<li><p>死锁</p>
-</li>
-<li><p>场景描述</p>
-</li>
-</ul>
-<p><img src="/../img/97c3112c055c4b95b736ea8a533028af.png" alt="在这里插入图片描述"></p>
-<p>此种情况若事务1执行一半，同时事务2执行一半，二者分别对ID&#x3D;1和ID&#x3D;2的数据加了X锁，导致后面的命令无法执行，陷入死循环。</p>
-<ul>
-<li><p>解决方案<br>InnoDB自动检测这种情况，将一个事务回滚，另一个事务继续执行；<br>  设置超时等待参数</p>
-</li>
-<li><p>避免死锁</p>
-<p>首先，当不同的业务访问多个表时，约定相同的顺序访问这些表；</p>
-<p>之后，当访问批量数据时，约定线程以相同的顺序访问数据；</p>
-<p>如果要更新记录，应直接申请X锁，而不是S锁再转换X锁。</p>
-</li>
-</ul>
-<ol start="4">
-<li><p>索引</p>
-<ul>
-<li>B+Tree<ul>
-<li>数据分块存储，每一块称为一页；</li>
-<li>所有的值都是按顺序存储的，并且每一个叶子到根的距离相同；</li>
-<li>非叶节点存储数据的边界，叶子节点存储指向数据行的指针；</li>
-<li>通过边界缩小查找的范围，从而避免全局扫描，加快查找速度。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3><span id="redis">Redis</span></h3><ol>
-<li>数据类型</li>
-</ol>
-<p><img src="/../img/9f6101392f054dc880c7eba4d9861265.png" alt="在这里插入图片描述"></p>
-<p>   值有七种数据类型</p>
-<ol start="2">
-<li><p>过期策略</p>
-<ul>
-<li>将过期的key放在一个独立的字典里，不会立刻删除。因为每一个key都删除效率太低。</li>
-<li>惰性删除：当客户端访问key时，检查是否过期，过期则删除；</li>
-<li>定期扫描：默认每秒扫描10次。<ul>
-<li>先从字典中随机选择20个key；</li>
-<li>删除其中过期的key；</li>
-<li>若删除的比例超过25%，则重新执行一轮</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>淘汰策略</p>
-<ul>
-<li>当内存超出最大限制时，需要淘汰一些数据腾出空间</li>
-<li>两种主流策略：淘汰剩余寿命（TTL）最短的；淘汰访问次数最少的（近似LRU算法）</li>
-<li>近似LRU算法：每个key维护一个时间戳，淘汰时随机选择5个key，淘汰最旧的key。如果还超，就继续淘汰。</li>
-</ul>
-</li>
-<li><p>缓存穿透</p>
-<ul>
-<li>查询根本不存在的数据，缓存里肯定没有，只能提交给数据库查询。这种请求一多，数据库负载过大就崩了。</li>
-<li>解决方案：<ul>
-<li>在数据库未查询到，给客户端返回空值的同时，将空值存入缓存。下次访问直接返回空。</li>
-<li>在缓存层之前设置布隆过滤器，将所有key存入，若请求无效的key，直接过滤。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>缓存击穿</p>
-<ul>
-<li>访问量很大的数据，在缓存失效瞬间，大量请求涌入存储层。</li>
-<li>解决方案：<ul>
-<li>在一个线程访问时加互斥锁，其他线程等待。访问结束，缓存中已有数据，其他线程访问缓存即可。</li>
-<li>设置永不过期，物理上</li>
-<li>设置逻辑过期时间，当发现一个value逻辑过期，使用一个单独的线程重建缓存，逻辑上</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>缓存雪崩</p>
-<ul>
-<li>缓存击穿的升级版。有大量的热门缓存，同时失效。或缓存服务器宕机。</li>
-<li>解决方案：<ul>
-<li>避免同时过期，附加一个随机数</li>
-<li>构建高可用的Redis缓存</li>
-<li>构建多级缓存，本地缓存</li>
-<li>启用限流和降级措施，对数据库限流，服务降级</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>分布式锁</p>
-<ul>
-<li>分布式部署中，经常将数据读到内存，修改后返回给数据库。但这一操作可能被多个进程同时进行，读和写不是原子操作，需要加锁</li>
-<li>基本原理：<ul>
-<li>同步锁：在多个线程都能访问到的地方，做一个标记，标记该数据的访问权限</li>
-<li>分布式锁：在多个进程都能访问到的地方，做一个标记，标记该数据的访问权限</li>
-</ul>
-</li>
-<li>实现方式：<ul>
-<li>基于数据库实现分布式锁</li>
-<li>基于Redis实现分布式锁</li>
-<li>基于Zookeeper实现分布式锁</li>
-</ul>
-</li>
-<li>Redis实现锁的原则<ul>
-<li>独享。在任一时刻，只有一个客户端持有锁</li>
-<li>无死锁。即使持有锁的客户端崩溃或网络被分裂，锁依然可以被获取</li>
-<li>容错。只要Redis大部分节点活着，客户端就可以获取和释放锁</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3><span id="spring">Spring</span></h3><ol>
-<li>Spring IoC</li>
-</ol>
-<p><img src="/../img/eff64dc9b0ef4255bbce19e4ab67b68c.png" alt="在这里插入图片描述"></p>
-<ol start="2">
-<li><p>Spring AOP<br><img src="/../img/6c9fd6110fbe4670a8389200e7ec5cab.png" alt="在这里插入图片描述"></p>
-</li>
-<li><p>Spring MVC</p>
-</li>
-</ol>
-<p><img src="/../img/7f5c7451739a422bae7df4d41c479dc6.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>调度顺序：<ul>
-<li>客户端发送请求给调度程序（DispatcherServlet）</li>
-<li>DS调度HandlerMapping组件，HM将Adapter返回给DS</li>
-<li>HM调用HandlerAdapter组件，获取其中的Controller，将模型数据和视图返回给DS</li>
-<li>DS调用视图解析器（ViewResolver），将ModelAndView发给它</li>
-<li>VR根据此找到对应的模板引擎，由模板引擎做为客户端做渲染</li>
-</ul>
-</li>
-</ul>
 
       
 
@@ -739,47 +546,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Session</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">内容分发网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AOP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">捕获异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">基本语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,27 +562,47 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">内容分发网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">基本语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">持久化框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反向代理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -823,7 +614,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">反向代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">集合类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,15 +642,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">集合类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -859,15 +654,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">持久化框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -879,15 +678,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -896,6 +687,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码精读</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -915,15 +722,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">过期策略</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">淘汰策略</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存穿透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存击穿</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">缓存雪崩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">调试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
             
             <div class="clearfix"></div>
